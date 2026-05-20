@@ -1,8 +1,5 @@
 <?php
-$host = '127.0.0.1';
-$user = 'root';
-$password = '';
-$dbName = 'patisserie';
+require_once __DIR__ . '/config.php';
 
 $mysqli = new mysqli($host, $user, $password);
 $mysqli->set_charset('utf8mb4');

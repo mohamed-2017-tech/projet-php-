@@ -1,0 +1,42 @@
+services:
+  # Le service web pour votre application PHP
+  - type: web
+    name: patisserie-app
+    env: docker
+    # Assurez-vous que votre code est sur un dépôt Git (GitHub, GitLab)
+    # Render utilisera ce dépôt pour déployer.
+    repo: https://github.com/VOTRE_UTILISATEUR/VOTRE_REPO # <--- À MODIFIER
+    region: frankfurt # Région de déploiement, vous pouvez choisir une autre
+    plan: free # Plan gratuit
+    healthCheckPath: /
+    envVars:
+      - key: DB_HOST
+        fromService:
+          type: pserv
+          name: patisserie-db
+          property: host
+      - key: DB_USER
+        fromService:
+          type: pserv
+          name: patisserie-db
+          property: user
+      - key: DB_PASS
+        fromService:
+          type: pserv
+          name: patisserie-db
+          property: password
+      - key: DB_NAME
+        fromService:
+          type: pserv
+          name: patisserie-db
+          property: database
+    # Commande exécutée une seule fois au premier déploiement pour créer les tables
+    initialDeployHook: "mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME < patisserie.sql"
+
+  # Le service de base de données MySQL
+  - type: pserv # "Private Service" pour la base de données
+    name: patisserie-db
+    env: mysql
+    region: frankfurt
+    plan: free
+    mysqlVersion: "8"

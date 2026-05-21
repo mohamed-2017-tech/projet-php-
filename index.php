@@ -1,6 +1,9 @@
 <?php
-require_once __DIR__ . '/config.php';
-
+// require_once __DIR__ . '/config.php';
+$host = "127.0.0.1";   // ou "localhost" selon ta config
+$user = "root";        // ton utilisateur MySQL
+$password = "";        // ton mot de passe MySQL (vide si aucun)
+$database = "patisserie"; // nom de ta base de données
 $mysqli = new mysqli($host, $user, $password);
 $mysqli->set_charset('utf8mb4');
 if ($mysqli->connect_error) {

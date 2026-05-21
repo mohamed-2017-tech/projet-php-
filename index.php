@@ -1,14 +1,21 @@
-<?php
+
 // require_once __DIR__ . '/config.php';
+<?php
 $host = "127.0.0.1";   // ou "localhost" selon ta config
 $user = "root";        // ton utilisateur MySQL
 $password = "";        // ton mot de passe MySQL (vide si aucun)
-$database = "patisserie"; // nom de ta base de données
-$mysqli = new mysqli($host, $user, $password);
+$database = "nom_de_base"; // le nom de ta base de données
+
+$mysqli = new mysqli($host, $user, $password, $database);
 $mysqli->set_charset('utf8mb4');
+
 if ($mysqli->connect_error) {
     die('Erreur de connexion : ' . $mysqli->connect_error);
 }
+
+echo "Connexion réussie !";
+?>
+
 
 $mysqli->query("CREATE DATABASE IF NOT EXISTS `$dbName` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
 $mysqli->select_db($dbName);

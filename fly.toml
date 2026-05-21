@@ -8,8 +8,17 @@ primary_region = 'ams'
 
 [build]
 
+[deploy]
+  release_command = "mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME < /var/www/html/patisserie.sql"
+
+[env]
+  DB_HOST = "your-db-host" # Sera remplacé par l'adresse de votre base de données Fly.io
+  DB_USER = "user"
+  DB_PASS = "password"
+  DB_NAME = "patisserie"
+
 [http_service]
-  internal_port = 8080
+  internal_port = 80
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true

@@ -1,6 +1,6 @@
 
-// require_once __DIR__ . '/config.php';
 <?php
+ require_once __DIR__ . '/config.php';
 $host = "127.0.0.1";   // ou "localhost" selon ta config
 $user = "root";        // ton utilisateur MySQL
 $password = "";        // ton mot de passe MySQL (vide si aucun)
@@ -16,7 +16,7 @@ if ($mysqli->connect_error) {
 echo "Connexion réussie !";
 ?>
 
-
+<?php
 $mysqli->query("CREATE DATABASE IF NOT EXISTS `$dbName` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
 $mysqli->select_db($dbName);
 
